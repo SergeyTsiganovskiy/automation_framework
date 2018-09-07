@@ -20,7 +20,7 @@ namespace aautomation_framework.TestCases.Functional
         public void Ex00000_ToDo_Smth()
         {
             // some actions
-            Assert.That("", Is.EqualTo(""), $"Cannot perform an action. Message: '{""} {""}'");
+            Assert.That("", Is.EqualTo(""), $"Cannot perform an action. Message: '{"some info"} {""}'");
             CollectionAssert.AreEquivalent(null, null, "Actual specialties do not represent the expected from the database");
             foreach (var risk in new List<TestDelegate>())
             {
