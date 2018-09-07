@@ -20,5 +20,11 @@ namespace aautomation_framework.PageObjects
             return new WebDriverWait(_webDriver, TimeSpan.FromSeconds(timeout)).Until(
                 SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
         }
+
+        protected IWebElement WaitForElementIsClickable(By locator, int timeout = 30)
+        {
+            return new WebDriverWait(_webDriver, TimeSpan.FromSeconds(timeout)).Until(
+                SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
+        }
     }
 }

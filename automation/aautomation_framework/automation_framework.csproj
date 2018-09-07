@@ -59,18 +59,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\DbConfigurationV1.cs" />
+    <Compile Include="Configuration\EnvironmentConfigurationV1.cs" />
+    <Compile Include="Configuration\SettingsV1.cs" />
+    <Compile Include="Configuration\UserV1.cs" />
     <Compile Include="PageObjects\CommonControls.cs" />
+    <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\PageObjectBase.cs" />
     <Compile Include="PageObjects\TemplatePageObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCases\BaseTest.cs" />
+    <Compile Include="TestCases\Functional\TemplateTest1.cs" />
+    <Compile Include="Utility\NUnitCustomAttributes.cs" />
+    <Compile Include="Utility\WebDriverExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="configurationV1.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Configuration\" />
     <Folder Include="Models\" />
-    <Folder Include="TestCases\Functional\" />
     <Folder Include="TestCases\Perfomance\" />
     <Folder Include="TestCases\Regression\" />
     <Folder Include="TestData\" />

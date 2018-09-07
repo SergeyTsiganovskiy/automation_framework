@@ -6,6 +6,12 @@ namespace aautomation_framework.PageObjects
     {
         public CommonControls(IWebDriver driver) : base(driver)
         {
+
+        }
+
+        public void RefreshPage()
+        {
+            WebDriver.Navigate().Refresh();
         }
     }
 }
