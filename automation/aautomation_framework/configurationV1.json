@@ -1,0 +1,50 @@
+﻿[
+  {
+    "Name": "afes-dev0",
+    "Url": "http://afes-dev0-srv1.zkpsl3bk22wuvfspx0uhovklae.bx.internal.cloudapp.net",
+    "Database": {
+      "Host": "afes-dev0-srv1",
+      "Port": "5432",
+      "Name": "afes",
+      "User": "camunda",
+      "Password": "camunda",
+      "Schema": "umbrella"
+    },
+    "Users": [
+      {
+        "Role": "manager",
+        "UserName": "manager.umbrella",
+        "Password": "Dummy#123"
+      },
+      {
+        "Role": "analyst",
+        "UserName": "analyst.umbrella",
+        "Password": "Dummy#123"
+      }
+    ]
+  },
+  {
+    "Name": "afes-qa",
+    "Url": "http://afes-qa-app1.zkpsl3bk22wuvfspx0uhovklae.bx.internal.cloudapp.net",
+    "Database": {
+      "Host": "10.12.227.104",
+      "Port": "5432",
+      "Name": "afes",
+      "User": "camunda",
+      "Password": "camunda",
+      "Schema": "umbrella"
+    },
+    "Users": [
+      {
+        "Role": "manager",
+        "UserName": "manager.umbrella",
+        "Password": "Dummy#123"
+      },
+      {
+        "Role": "analyst",
+        "UserName": "analyst.umbrella",
+        "Password": "Dummy#123"
+      }
+    ]
+  }
+]
