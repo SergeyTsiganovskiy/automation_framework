@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace aautomation_framework.Models.Api
 {
-    class ContractProductApiModel
+    public class ContractProductApiModel : ApiResponseBaseModel<List<ContractProductApiModel>>
     {
+        public string ndc11 { get; set; }
+        public List<string> dates { get; set; }
     }
 }

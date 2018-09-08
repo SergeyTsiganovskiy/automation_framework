@@ -70,6 +70,8 @@
     <Compile Include="Configuration\EnvironmentConfigurationV1.cs" />
     <Compile Include="Configuration\SettingsV1.cs" />
     <Compile Include="Configuration\UserV1.cs" />
+    <Compile Include="Models\Api\ApiResponseBaseModel.cs" />
+    <Compile Include="Models\Api\ContractProductApiModel.cs" />
     <Compile Include="Models\Api\CustomerApiModel.cs" />
     <Compile Include="PageObjects\CommonControls.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
