@@ -33,11 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.3.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.3.1\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
@@ -45,6 +51,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,13 +70,18 @@
     <Compile Include="Configuration\EnvironmentConfigurationV1.cs" />
     <Compile Include="Configuration\SettingsV1.cs" />
     <Compile Include="Configuration\UserV1.cs" />
+    <Compile Include="Models\Api\CustomerApiModel.cs" />
     <Compile Include="PageObjects\CommonControls.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\PageObjectBase.cs" />
     <Compile Include="PageObjects\TemplatePageObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCases\BaseTest.cs" />
-    <Compile Include="TestCases\Functional\TemplateTest1.cs" />
+    <Compile Include="TestCases\Functional\TemplateApiTestV1.cs" />
+    <Compile Include="TestCases\Functional\TemplateTestV1.cs" />
+    <Compile Include="Utility\ApiCallsClient.cs" />
+    <Compile Include="Utility\CommonApiPaths.cs" />
+    <Compile Include="Utility\LogUtil.cs" />
     <Compile Include="Utility\NUnitCustomAttributes.cs" />
     <Compile Include="Utility\WebDriverExtensions.cs" />
   </ItemGroup>
@@ -79,7 +91,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="TestCases\Perfomance\" />
     <Folder Include="TestCases\Regression\" />
     <Folder Include="TestData\" />
