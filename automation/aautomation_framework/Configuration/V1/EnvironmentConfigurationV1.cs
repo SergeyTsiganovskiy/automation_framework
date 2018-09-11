@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace aautomation_framework.Configuration
+namespace aautomation_framework.Configuration.V1
 {
     public class EnvironmentConfigurationV1
     {

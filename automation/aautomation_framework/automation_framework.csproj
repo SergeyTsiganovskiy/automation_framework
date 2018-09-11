@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.9.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.9.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -82,10 +84,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\DbConfigurationV1.cs" />
-    <Compile Include="Configuration\EnvironmentConfigurationV1.cs" />
-    <Compile Include="Configuration\SettingsV1.cs" />
-    <Compile Include="Configuration\UserV1.cs" />
+    <Compile Include="Configuration\V1\DbConfigurationV1.cs" />
+    <Compile Include="Configuration\V1\EnvironmentConfigurationV1.cs" />
+    <Compile Include="Configuration\V1\SettingsV1.cs" />
+    <Compile Include="Configuration\V1\UserV1.cs" />
+    <Compile Include="Configuration\V2\CommonTestingConfiguration.cs" />
+    <Compile Include="Configuration\V2\MCCommonConfigurationsVariablesModel.cs" />
+    <Compile Include="Configuration\V2\SettingsV2.cs" />
+    <Compile Include="Configuration\V3\PlatformJSONConfig.cs" />
+    <Compile Include="Configuration\V3\PlatformTestConfiguration.cs" />
     <Compile Include="Models\Api\ApiResponseBaseModel.cs" />
     <Compile Include="Models\Api\ContractProductApiModel.cs" />
     <Compile Include="Models\Api\CustomerApiModel.cs" />
@@ -95,7 +102,9 @@
     <Compile Include="PageObjects\PageObjectBase.cs" />
     <Compile Include="PageObjects\TemplatePageObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestCases\BaseTest.cs" />
+    <Compile Include="TestCases\BaseTestV1.cs" />
+    <Compile Include="TestCases\BaseTestV2.cs" />
+    <Compile Include="TestCases\BaseTestV3.cs" />
     <Compile Include="TestCases\Functional\TemplateApiTestV1.cs" />
     <Compile Include="TestCases\Functional\TemplateTestV1.cs" />
     <Compile Include="Utility\ApiCallsClient.cs" />
@@ -132,5 +141,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.9.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.9.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.41\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.41\build\Selenium.Chrome.WebDriver.targets'))" />
   </Target>
+  <Import Project="..\packages\Selenium.Chrome.WebDriver.2.41\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.41\build\Selenium.Chrome.WebDriver.targets')" />
 </Project>

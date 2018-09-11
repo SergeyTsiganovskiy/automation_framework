@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 
-namespace aautomation_framework.Configuration
+namespace aautomation_framework.Configuration.V1
 {
     public static class SettingsV1
     {

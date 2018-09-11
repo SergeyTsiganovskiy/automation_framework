@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace aautomation_framework.Configuration
+﻿namespace aautomation_framework.Configuration.V1
 {
     public class DbConfigurationV1
     {

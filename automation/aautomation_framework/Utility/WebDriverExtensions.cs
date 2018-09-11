@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -12,6 +14,7 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Safari;
 using OpenQA.Selenium.Support.UI;
+using System.Configuration;
 
 namespace aautomation_framework.Utility
 {
@@ -35,7 +38,7 @@ namespace aautomation_framework.Utility
                     ChromeOptions options = new ChromeOptions();
                     options.AddArgument("--start-miximized");
                     options.AddArguments("--disable-extensions", "--disable-infobars");
-                    if (!string.IsNullOrEmpty(downloadPath))
+                    if (!String.IsNullOrEmpty(downloadPath))
                     {
                         options.AddUserProfilePreference("download.default_directory", downloadPath);
                     }
@@ -46,7 +49,7 @@ namespace aautomation_framework.Utility
                     options.AddUserProfilePreference("profile.password_manager_enabled", false);
                     options.AddUserProfilePreference("profile.default_content_setting_values.automatic_downloads", 1);
 
-                    var path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                    var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                     driver = new ChromeDriver(path, options);
                     break;
                 case BrowserType.Firefox:
@@ -58,7 +61,7 @@ namespace aautomation_framework.Utility
                         PageLoadStrategy = PageLoadStrategy.Eager,
                         UnhandledPromptBehavior = UnhandledPromptBehavior.Accept
                     };
-                    path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                    path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                     driver = new InternetExplorerDriver(path, internetExplorerOptions);
                     break;
                 case BrowserType.Edge:
@@ -104,6 +107,59 @@ namespace aautomation_framework.Utility
             {
                 webBrowser.Quit();
             }
+        }
+
+        public static IWebElement GetElementByWithLogs(IWebDriver driver, By by, string message, int second = 10)
+        {
+            IWebElement element = null;
+            if (@by != null)
+            {
+
+                try
+                {
+                    element = WaitForElementIsVisible(driver, @by, second);
+                    var Y = element.Location.Y - 150;
+                    driver.ExecuteJavaScript("scroll(0," + Y + ")");
+                }
+                catch (NoSuchElementException e)
+                {
+
+                    throw e;
+
+                }
+                catch (Exception e)
+                {
+                    LogUtil.WriteDebug("I've been waiting 10 seconds element but it is not visible");
+                    LogUtil.WriteDebug(e.ToString() + '\n' + '\n' + "**************************" + message + "**************************" + '\n' + @by);
+                    TakeScreenshot(driver);
+                    throw e;
+                }
+            }
+            return element;
+        }
+
+        public static IWebElement WaitForElementIsVisible(IWebDriver driver, By locator, int maxsecond)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.Zero;
+            return new WebDriverWait(driver, TimeSpan.FromSeconds(maxsecond)).Until(ExpectedConditions.ElementIsVisible(locator));
+        }
+
+        public static void TakeScreenshot(IWebDriver driver)
+        {
+            string currentpath = TestContext.CurrentContext.TestDirectory;
+            string[] pathList = currentpath.Split('\\');
+            string sequence = @"\";
+            string subPath = "ImagesPath";
+            bool exists = System.IO.Directory.Exists(pathList[0] + sequence + subPath);
+            if (!exists)
+                System.IO.Directory.CreateDirectory(pathList[0] + sequence + subPath);
+            string path = pathList[0] + sequence + subPath + sequence;
+            string PublicScreenPath = "from settings";
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
+            ITakesScreenshot screenshotDriver = driver as ITakesScreenshot;
+            Screenshot screenshot = screenshotDriver.GetScreenshot();
+            screenshot.SaveAsFile(path + timestamp + ".jpeg", ScreenshotImageFormat.Jpeg);
+            LogUtil.WriteDebug("\nPlease find more information on this screen here: " + PublicScreenPath + timestamp + ".jpeg");
         }
     }
 }

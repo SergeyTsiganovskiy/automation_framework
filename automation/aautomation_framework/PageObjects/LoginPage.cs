@@ -1,4 +1,7 @@
-﻿using aautomation_framework.Configuration;
+﻿using System;
+using aautomation_framework.Configuration;
+using aautomation_framework.Configuration.V1;
+using aautomation_framework.Utility;
 using OpenQA.Selenium;
 
 namespace aautomation_framework.PageObjects
@@ -31,6 +34,23 @@ namespace aautomation_framework.PageObjects
             WaitForElementIsDisplayed(userNameLocator).SendKeys(user);
             WaitForElementIsDisplayed(passwordLocator).SendKeys(password);
             WaitForElementIsClickable(loginButtonLocator).Click();
+        }
+
+        public void LoginWithLogs(string username, string password)
+        {
+            if (username != null && password != null)
+            {
+                WebDriverExtensions.GetElementByWithLogs(WebDriver, By.XPath("//*[@id='username']"), "Can not find input field username").SendKeys(username);
+                LogUtil.WriteDebug("Can find input field username and type this value: " + username);
+                WebDriverExtensions.GetElementByWithLogs(WebDriver, By.XPath("//input[@ng-model='ctrl.password']"), "Can not find input field password").SendKeys(password);
+                LogUtil.WriteDebug("Can find input field password and type this value: " + password);
+                WebDriverExtensions.GetElementByWithLogs(WebDriver, By.XPath("//span[contains(.,'Sign In')]"), "Can not find button Login").Click();
+                LogUtil.WriteDebug("Can find button Login and click on it");
+            }
+            else
+            {
+                NullReferenceException argEx = new NullReferenceException("Credentials cannot be null");
+            }
         }
     }
 }
